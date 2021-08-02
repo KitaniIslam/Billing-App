@@ -23,7 +23,7 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Billing"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint, showLabel: false }}>
       <BottomTab.Screen
         name="Billing"
         component={BillingNavigator}
@@ -35,14 +35,14 @@ export default function BottomTabNavigator() {
         name="Products"
         component={ProductsNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="list" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-list-outline" color={color} />,
         }}
       />
       <BottomTab.Screen
         name="Settings"
         component={SettingsNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="settings" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="settings-outline" color={color} />,
         }}
       />
     </BottomTab.Navigator>
