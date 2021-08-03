@@ -1,11 +1,61 @@
 import * as React from 'react';
-import { View , Text , StyleSheet} from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import { List, SearchBar } from 'antd-mobile-rn'
 
+const Item = List.Item
+const Brief = Item.Brief
+const Items = [
+  { id: 0, name: 'Apple', quantity: 1, totalPrice: 1000 },
+  { id: 1, name: 'Microsoft', quantity: 3, totalPrice: 3000 },
+  { id: 2, name: 'Dell', quantity: 5, totalPrice: 1000 },
+  { id: 3, name: 'IBM', quantity: 12, totalPrice: 18000 },
+  { id: 4, name: 'Apple', quantity: 1, totalPrice: 1000 },
+  { id: 5, name: 'Microsoft', quantity: 3, totalPrice: 3000 },
+  { id: 6, name: 'Dell', quantity: 5, totalPrice: 1000 },
+  { id: 7, name: 'IBM', quantity: 12, totalPrice: 18000 },
+  { id: 8, name: 'Apple', quantity: 1, totalPrice: 1000 },
+  { id: 9, name: 'Microsoft', quantity: 3, totalPrice: 3000 },
+  { id: 10, name: 'Dell', quantity: 5, totalPrice: 1000 },
+  { id: 11, name: 'IBM', quantity: 12, totalPrice: 18000 },
+]
+export default function Products() {
 
-export default function Products () {
+  const VisitProductPage = () => {}
+  const [productToFind, setProductToFind ] = React.useState<any>({ value: '' })
+  const findProduct = (payload: string) => {
+    setProductToFind({...productToFind, value: payload })
+  }
+
+  const clearFindProduct = () => {
+    setProductToFind({...productToFind, value: '' })
+  }
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Products Page</Text>
+      <SearchBar
+        placeholder="Search by product name"
+        cancelText="clear"
+        value={productToFind.value}
+        onChange={findProduct}
+        onCancel={clearFindProduct}
+        showCancelButton
+      />
+      <ScrollView>
+        <List>
+          {Items
+            .filter((product) => product.name.toLowerCase().includes(productToFind.value.toLowerCase()) )
+            .map((product) => <Item
+              arrow="horizontal"
+              onClick={() => VisitProductPage}
+              extra={`${product.totalPrice} $`}
+              key={product.id}
+            >
+              {product.name}
+              <Brief>
+                Quantity: {product.quantity}
+              </Brief>
+            </Item>)}
+        </List>
+      </ScrollView>
     </View>
   )
 }
@@ -13,11 +63,14 @@ export default function Products () {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'center',
+    backgroundColor: '#fff'
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  loginItems: {
+    marginHorizontal: 10
   }
 });
