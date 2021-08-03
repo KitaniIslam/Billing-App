@@ -25,6 +25,7 @@ export default {
           Products: {
             screens: {
               Products: 'products',
+              ProductDetails: 'ProductDetails'
             },
           },
           Settings: {

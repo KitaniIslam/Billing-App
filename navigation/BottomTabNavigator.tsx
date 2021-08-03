@@ -13,6 +13,7 @@ import useColorScheme from '../hooks/useColorScheme';
 import Billing from '../screens/Billing';
 import Products from '../screens/Products';
 import Settings from '../screens/Settings';
+import ProductDetails from '../screens/ProductDetails'
 import { BottomTabParamList, BillingParamList, ProductsParamList, SettingsParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -80,6 +81,11 @@ function ProductsNavigator() {
         name="Products"
         component={Products}
         options={{ headerTitle: 'Products' }}
+      />
+      <ProductsStack.Screen
+        name="ProductDetails"
+        component={ProductDetails}
+        options={{ headerTitle: 'Details' }}
       />
     </ProductsStack.Navigator>
   );

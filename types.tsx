@@ -6,7 +6,7 @@
 export type RootStackParamList = {
   Root: undefined;
   NotFound: undefined;
-  Login: undefined;
+  Product: undefined;
 };
 
 export type BottomTabParamList = {
@@ -21,6 +21,7 @@ export type BillingParamList = {
 
 export type ProductsParamList = {
   Products: undefined;
+  ProductDetails: undefined;
 };
 
 export type SettingsParamList = {
