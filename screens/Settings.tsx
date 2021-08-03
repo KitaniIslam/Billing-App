@@ -7,6 +7,8 @@ export default function Settings() {
   const Item = List.Item;
   return (
     <View style={styles.container}>
+      <List>
+
       <Item
           arrow="horizontal"
           thumb={<Ionicons name="person-outline" style={{marginRight: 10 }} size={18} color="black" />}
@@ -52,6 +54,7 @@ export default function Settings() {
           Logout
         </Button>
       </Item>
+      </List>
     </View>
   )
 }
@@ -59,6 +62,7 @@ export default function Settings() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
   },
   title: {
     fontSize: 20,
