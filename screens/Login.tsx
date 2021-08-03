@@ -1,14 +1,10 @@
 import * as React from 'react';
-import { useEffect } from 'react'
 import { Ionicons } from '@expo/vector-icons';
 import { View, StyleSheet } from 'react-native';
 import { List, InputItem, WhiteSpace, Button } from 'antd-mobile-rn'
 
 
 export default function Login() {
-  useEffect(() => {
-    console.log(InputItem);
-  }, [])
   return (
     <View style={styles.container}>
       <List style={styles.loginItems}>
@@ -40,7 +36,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
   },
   title: {
     fontSize: 20,
