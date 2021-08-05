@@ -13,9 +13,11 @@ import { RootStackParamList, LoginStackParamList } from '../types';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 import Login from '../screens/Login'
+import { useTypedSelector } from '../store/hooks'
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
-  const isLoggedIn = true
+  
+  const {isLoggedIn} = useTypedSelector((state) => state.login)
 
   return (
     <NavigationContainer
