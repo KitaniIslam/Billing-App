@@ -1,33 +1,15 @@
 import * as React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import { List, SearchBar } from 'antd-mobile-rn'
-
-interface Product {
-  name: string;
-  quantity: number;
-  unitPrice: number;
-  tax: number;
-  discount: number;
-  totalPrice: number;
-}
+import { useTypedSelector } from '../store/hooks'
+import { Product } from '../types'
 
 const Item = List.Item
 const Brief = Item.Brief
-const Items = [
-  { id: 0, name: 'Apple', quantity: 1, totalPrice: 1000, unitPrice: 0, tax: 0, discount: 0 },
-  { id: 1, name: 'Microsoft', quantity: 3, totalPrice: 3000, unitPrice: 0, tax: 0, discount: 0 },
-  { id: 2, name: 'Dell', quantity: 5, totalPrice: 1000, unitPrice: 0, tax: 0, discount: 0 },
-  { id: 3, name: 'IBM', quantity: 12, totalPrice: 18000, unitPrice: 0, tax: 0, discount: 0 },
-  { id: 4, name: 'Apple', quantity: 1, totalPrice: 1000, unitPrice: 0, tax: 0, discount: 0 },
-  { id: 5, name: 'Microsoft', quantity: 3, totalPrice: 3000, unitPrice: 0, tax: 0, discount: 0 },
-  { id: 6, name: 'Dell', quantity: 5, totalPrice: 1000, unitPrice: 0, tax: 0, discount: 0 },
-  { id: 7, name: 'IBM', quantity: 12, totalPrice: 18000, unitPrice: 0, tax: 0, discount: 0 },
-  { id: 8, name: 'Apple', quantity: 1, totalPrice: 1000, unitPrice: 0, tax: 0, discount: 0 },
-  { id: 9, name: 'Microsoft', quantity: 3, totalPrice: 3000, unitPrice: 0, tax: 0, discount: 0 },
-  { id: 10, name: 'Dell', quantity: 5, totalPrice: 1000, unitPrice: 0, tax: 0, discount: 0 },
-  { id: 11, name: 'IBM', quantity: 12, totalPrice: 18000, unitPrice: 0, tax: 0, discount: 0 },
-]
+
 export default function Products({ navigation }: { navigation: any }) {
+
+  const { Products } = useTypedSelector((state) => state.products)
 
   const VisitProductPage = (payload: Product) => {
     navigation.navigate('ProductDetails', payload)
@@ -52,17 +34,17 @@ export default function Products({ navigation }: { navigation: any }) {
       />
       <ScrollView>
         <List>
-          {Items
-            .filter((product) => product.name.toLowerCase().includes(productToFind.value.toLowerCase()))
-            .map((product) => <Item
+          {Products
+            .filter((item) => item.name.toLowerCase().includes(productToFind.value.toLowerCase()))
+            .map((item) => <Item
               arrow="horizontal"
-              onClick={() => VisitProductPage(product)}
-              extra={`${product.totalPrice} $`}
-              key={product.id}
+              onClick={() => VisitProductPage(item)}
+              extra={`${item.processedTotalPrice} $`}
+              key={item.id}
             >
-              {product.name}
+              {item.name}
               <Brief>
-                Quantity: {product.quantity}
+                Quantity: {item.quantity}
               </Brief>
             </Item>)}
         </List>
@@ -74,7 +56,6 @@ export default function Products({ navigation }: { navigation: any }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
     backgroundColor: '#fff'
   },
   title: {
