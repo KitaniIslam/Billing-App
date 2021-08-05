@@ -57,12 +57,23 @@ const Products = createSlice({
       state.taxAppliedOnBasket = tax.reduce((reducer, item) => reducer + item, 0)
       state.totalPriceInBasket = totalPrice
       state.taxedTotalPriceInBasket = taxedTotalPrice
-  },
+    },
+    changeTax(state, action: PayloadAction<number>) {
+      state.tax = action.payload
+      Products.caseReducers.resetBasket(state)
+    },
+    resetBasket(state) {
+      state.Basket = []
+      state.totalPriceInBasket = 0
+      state.taxedTotalPriceInBasket = 0
+      state.discountAppliedOnBasket = 0
+      state.taxAppliedOnBasket = 0
+    },
     deleteProduct(state, action) {},
     calculatePrice(state) {}
   },
 });
 
-export const { addProduct, deleteProduct, calculatePrice } = Products.actions;
+export const { addProduct, deleteProduct, calculatePrice, calculateBasketItemsPrice, changeTax, resetBasket } = Products.actions;
 export default Products.reducer;
 
