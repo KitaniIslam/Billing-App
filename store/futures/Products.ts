@@ -89,23 +89,21 @@ const Products = createSlice({
       state.taxedTotalPriceInBasket = 0
       state.discountAppliedOnBasket = 0
       state.taxAppliedOnBasket = 0
-    },
-    deleteProduct(state, action) {},
-    calculatePrice(state) {}
+    }
   },
-  extraReducers: (builder) => {
-    builder.addCase(Logout, (state) => {
-      state.Products = []
-      state.Basket = []
-      state.totalPriceInBasket = 0
-      state.taxedTotalPriceInBasket = 0
-      state.tax = 6
-      state.discountAppliedOnBasket = 0
-      state.taxAppliedOnBasket = 0
-    })
+  extraReducers: {
+    [Logout.type]: (state) => {
+        state.Products = []
+        state.Basket = []
+        state.totalPriceInBasket = 0
+        state.taxedTotalPriceInBasket = 0
+        state.tax = 6
+        state.discountAppliedOnBasket = 0
+        state.taxAppliedOnBasket = 0
+    },
   },
 });
 
-export const { addProduct, deleteProduct, calculatePrice, calculateBasketItemsPrice, changeTax, resetBasket } = Products.actions;
+export const { addProduct, calculateBasketItemsPrice, changeTax, resetBasket } = Products.actions;
 export default Products.reducer;
 
