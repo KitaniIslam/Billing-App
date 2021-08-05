@@ -1,9 +1,11 @@
 import * as React from 'react'
 import { Button, List, Modal } from 'antd-mobile-rn'
-import { View } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
+import { useTypedSelector } from '../store/hooks'
 
-export default function DetailsModal({ originalPrice, discount, tax, totalPrice }: { originalPrice: number, discount: number, tax: number, totalPrice: number }) {
+export default function DetailsModal() {
   const [displayDetails, setModalStatus] = React.useState(false)
+  const { totalPriceInBasket, taxedTotalPriceInBasket, tax, discount, discountAppliedOnBasket, taxAppliedOnBasket } = useTypedSelector((state) => state.products)
   const showModal = () => {
     setModalStatus(true)
   }
@@ -12,10 +14,10 @@ export default function DetailsModal({ originalPrice, discount, tax, totalPrice 
   }
   return (
     <View>
-      <List.Item arrow="up" onClick={showModal}>
-        Total Price: $ 1,028.20
+      <List.Item arrow="up" onClick={showModal} style={{backgroundColor: '#3498db'}}>
+          <Text style={styles.title}>Total Price: $ {taxedTotalPriceInBasket}</Text>
         <List.Item.Brief>
-          Click for more details
+          <Text style={styles.brief}>Click for more details</Text>
         </List.Item.Brief>
       </List.Item>
       <Modal
@@ -25,10 +27,10 @@ export default function DetailsModal({ originalPrice, discount, tax, totalPrice 
         animationType="slide-up"
       >
         <List>
-          <List.Item key={0}>{`Total Price Without Tax: $ ${originalPrice}`}</List.Item>
-          <List.Item key={1}>{`Discount 3% : $ ${discount}`}</List.Item>
-          <List.Item key={2}>{`Tax 6% : $ ${tax}`}</List.Item>
-          <List.Item key={3}>{`Total Price: $ ${totalPrice}`}</List.Item>
+          <List.Item key={0}>{`Total Price Without Tax: $ ${totalPriceInBasket}`}</List.Item>
+          <List.Item key={1}>{`Discount ${discount}% : $ ${discountAppliedOnBasket.toFixed(2)}`}</List.Item>
+          <List.Item key={2}>{`Tax ${tax}% : $ ${taxAppliedOnBasket.toFixed(2)}`}</List.Item>
+          <List.Item key={3}>{`Total Price: $ ${taxedTotalPriceInBasket.toFixed(2)}`}</List.Item>
           <List.Item>
             <Button type="primary" onClick={onClose}>Close</Button>
           </List.Item>
@@ -37,3 +39,14 @@ export default function DetailsModal({ originalPrice, discount, tax, totalPrice 
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  title: {
+    color: '#ffffff',
+    fontWeight: 'bold',
+    fontSize: 18
+  },
+  brief: {
+    color: '#ffffff',
+  }
+})
