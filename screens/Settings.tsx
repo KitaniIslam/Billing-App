@@ -2,9 +2,17 @@ import * as React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { View, StyleSheet } from 'react-native';
 import { List, Button } from 'antd-mobile-rn';
+import { useTypedDispatch } from '../store/hooks'
+import { Logout } from '../store/futures/Login'
 
 export default function Settings() {
+
   const Item = List.Item;
+
+  const dispatch = useTypedDispatch()
+  const LogoutUser = () => {
+      dispatch(Logout())
+  }
   return (
     <View style={styles.container}>
       <List>
@@ -50,7 +58,7 @@ export default function Settings() {
         About
       </Item>
       <Item>
-        <Button type="warning">
+        <Button type="warning" onClick={LogoutUser}>
           Logout
         </Button>
       </Item>
