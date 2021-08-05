@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { View, StyleSheet, LogBox, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, LogBox, Text, ScrollView, Alert } from 'react-native';
 import DetailsModal from '../components/DetailsModal';
 import { Stepper, List, InputItem, Button, Picker, Toast } from 'antd-mobile-rn';
 import { useTypedDispatch, useTypedSelector } from '../store/hooks'
-import { addProduct } from '../store/futures/Products';
+import { addProduct, changeTax } from '../store/futures/Products';
 import { ProductInBasket } from '../types'
 
 export default function Billing() {
@@ -23,7 +23,26 @@ export default function Billing() {
 
   const changeSelectedState = (payload: any) => {
     const newSelectedState = Taxes.filter((item) => item.value === Number(payload[0]))
-    setSelectedState([newSelectedState[0].label])
+    if(newSelectedState[0].label === selectedState[0]) return
+    Alert.alert(
+      "Change State?",
+      "By changing state basket will be reset but product still apers in Products Tab",
+      [
+        // The "Yes" button
+        {
+          text: "Continue",
+          onPress: () => {
+            setSelectedState([newSelectedState[0].label])
+            dispatch(changeTax(newSelectedState[0].value))
+          },
+        },
+        // The "No" button
+        // Does nothing but dismiss the dialog when tapped
+        {
+          text: "Cancel",
+        },
+      ]
+    );
   };
 
   const changeProductName = (payload: string) => {
@@ -39,7 +58,6 @@ export default function Billing() {
   }
 
   const addProductToBasket = () => {
-    setErrorsStatus(true)
     const newProduct: ProductInBasket = {
       id: new Date().getTime(),
       name: productName,
@@ -48,7 +66,7 @@ export default function Billing() {
       quantity: productQuantity
     }
     if (productName.length < 1|| Number(productPrice) === 0) {
-      Toast.fail('Load failed ! check error box');
+      setErrorsStatus(true)
     } else {
       dispatch(addProduct(newProduct))
       Toast.success(`${productName} added successfully`)
@@ -121,12 +139,7 @@ export default function Billing() {
             </View>
         </ScrollView>
       </View>
-      <DetailsModal
-        originalPrice={1000}
-        discount={3}
-        tax={6}
-        totalPrice={1080}
-      />
+      <DetailsModal/>
     </View >
   )
 }
