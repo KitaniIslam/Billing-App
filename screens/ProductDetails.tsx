@@ -8,13 +8,13 @@ export default function ProductDetails({ route }: { route: any }) {
     <View style={styles.wrapper}>
       <View style={styles.productInfo}>
         <Text style={styles.productName}>{route.params.name}</Text>
-        <Text>{route.params.unitPrice} $</Text>
+        <Text>{route.params.price} $</Text>
       </View>
       <List>
         <Item>Quantity <Brief>{route.params.quantity}</Brief></Item>
-        <Item>Discount <Brief>- {route.params.discount} %</Brief></Item>
-        <Item>Tax <Brief>+ {route.params.tax} %</Brief></Item>
-        <Item extra={route.params.totalPrice+' $'}>Total Price <Brief>With Tax</Brief></Item>
+        <Item>Discount <Brief>- {route.params.applayedDiscount} %</Brief></Item>
+        <Item>Tax <Brief>+ {route.params.applayedTax} %</Brief></Item>
+        <Item extra={route.params.processedTotalPrice+' $'}>Total Price <Brief>With Tax and Discount</Brief></Item>
       </List>
       
     </View>
