@@ -9,7 +9,7 @@ const Brief = Item.Brief
 
 export default function Products({ navigation }: { navigation: any }) {
 
-  const { Products } = useTypedSelector((state) => state.products)
+  const { Products, Taxes } = useTypedSelector((state) => state.products)
 
   const VisitProductPage = (payload: Product) => {
     navigation.navigate('ProductDetails', payload)
@@ -18,6 +18,8 @@ export default function Products({ navigation }: { navigation: any }) {
   const findProduct = (payload: string) => {
     setProductToFind({ ...productToFind, value: payload })
   }
+
+  const findTaxSymbole = (payload: number):string => (Taxes.filter((itemToFilter) => itemToFilter.value === payload))[0].label
 
   const clearFindProduct = () => {
     setProductToFind({ ...productToFind, value: '' })
@@ -44,7 +46,7 @@ export default function Products({ navigation }: { navigation: any }) {
             >
               {item.name}
               <Brief>
-                Quantity: {item.quantity}
+                Qt: {item.quantity} State: {findTaxSymbole(item.applayedTax)}
               </Brief>
             </Item>)}
         </List>
