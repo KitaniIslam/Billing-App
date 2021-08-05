@@ -30,4 +30,29 @@ export type SettingsParamList = {
 
 export type LoginStackParamList = {
   Login: undefined
+};
+
+
+export type Product = {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+  applayedTax: number;
+  applayedDiscount: number;
+  totalPrice: number;
+  processedTotalPrice: number;
+};
+
+export type ProductInBasket = {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+  state: string;
+};
+
+export type Tax = {
+  label: string;
+  value: number;
 }
