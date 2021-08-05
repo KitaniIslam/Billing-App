@@ -56,3 +56,8 @@ export type Tax = {
   label: string;
   value: number;
 }
+
+export type Login = {
+  username: string;
+  password: string;
+}
