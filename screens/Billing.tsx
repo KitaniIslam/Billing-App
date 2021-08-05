@@ -134,7 +134,7 @@ export default function Billing() {
             <Button type="primary" style={{marginHorizontal: 15, marginTop: 10}} onClick={addProductToBasket}>Add To List</Button>
             <View>
               <List renderHeader="Basket">
-                {Basket.map((item) => <List.Item key={item.id} extra={item.price}>{item.name}<List.Item.Brief>{`Qt: ${item.quantity} State: ${item.state}`}</List.Item.Brief></List.Item>)}
+                {Basket.map((item) => <List.Item key={item.id} extra={item.price * item.quantity}>{item.name}<List.Item.Brief>{`Qt: ${item.quantity} State: ${item.state}`}</List.Item.Brief></List.Item>)}
               </List>
             </View>
         </ScrollView>
