@@ -1,6 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Product, ProductInBasket, Tax } from '../../types'
 
+const calculatePriceIncludingTaxDiscount = (totalPriceForProduct: number, tax: number, discount: number) => {
+
+    const totalPriceForProductAfterDiscount:number = totalPriceForProduct - (totalPriceForProduct * (discount /100))
+    const taxToApply:number = totalPriceForProductAfterDiscount * (tax /100)
+    return totalPriceForProductAfterDiscount + taxToApply
+
+}
+
 interface globalState {
   Products: Product[];
   Basket: ProductInBasket[];
@@ -35,6 +43,18 @@ const Products = createSlice({
   initialState,
   reducers: {
     addProduct(state, action: PayloadAction<ProductInBasket>) {
+      const totalPrice = (action.payload.quantity * action.payload.price)
+      const applayedTax = (state.Taxes.filter((itemToFilter) => itemToFilter.label === action.payload.state))[0].value
+      state.Products.push({
+        id: action.payload.id,
+        name: action.payload.name,
+        price: action.payload.price,
+        quantity: action.payload.quantity,
+        applayedTax,
+        applayedDiscount: state.discount,
+        totalPrice,
+        processedTotalPrice: calculatePriceIncludingTaxDiscount(totalPrice, applayedTax, state.discount)
+      })
       state.Basket.push(action.payload)
       Products.caseReducers.calculateBasketItemsPrice(state)
     },
