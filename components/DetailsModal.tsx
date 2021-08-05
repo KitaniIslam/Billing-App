@@ -15,7 +15,7 @@ export default function DetailsModal() {
   return (
     <View>
       <List.Item arrow="up" onClick={showModal} style={{backgroundColor: '#3498db'}}>
-          <Text style={styles.title}>Total Price: $ {taxedTotalPriceInBasket}</Text>
+          <Text style={styles.title}>Total Price: $ {taxedTotalPriceInBasket.toFixed(2)}</Text>
         <List.Item.Brief>
           <Text style={styles.brief}>Click for more details</Text>
         </List.Item.Brief>
@@ -27,7 +27,7 @@ export default function DetailsModal() {
         animationType="slide-up"
       >
         <List>
-          <List.Item key={0}>{`Total Price Without Tax: $ ${totalPriceInBasket}`}</List.Item>
+          <List.Item key={0}>{`Total Price Without Tax: $ ${totalPriceInBasket.toFixed(2)}`}</List.Item>
           <List.Item key={1}>{`Discount ${discount}% : $ ${discountAppliedOnBasket.toFixed(2)}`}</List.Item>
           <List.Item key={2}>{`Tax ${tax}% : $ ${taxAppliedOnBasket.toFixed(2)}`}</List.Item>
           <List.Item key={3}>{`Total Price: $ ${taxedTotalPriceInBasket.toFixed(2)}`}</List.Item>
