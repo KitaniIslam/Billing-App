@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Product, ProductInBasket, Tax } from '../../types'
+import { Logout } from './Login'
 
 const calculatePriceIncludingTaxDiscount = (totalPriceForProduct: number, tax: number, discount: number) => {
 
@@ -91,6 +92,17 @@ const Products = createSlice({
     },
     deleteProduct(state, action) {},
     calculatePrice(state) {}
+  },
+  extraReducers: (builder) => {
+    builder.addCase(Logout, (state) => {
+      state.Products = []
+      state.Basket = []
+      state.totalPriceInBasket = 0
+      state.taxedTotalPriceInBasket = 0
+      state.tax = 6
+      state.discountAppliedOnBasket = 0
+      state.taxAppliedOnBasket = 0
+    })
   },
 });
 
