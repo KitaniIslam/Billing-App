@@ -6,7 +6,6 @@
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
-import { ColorSchemeName } from 'react-native';
 
 import NotFoundScreen from '../screens/NotFoundScreen';
 import { RootStackParamList, LoginStackParamList } from '../types';
@@ -15,14 +14,13 @@ import LinkingConfiguration from './LinkingConfiguration';
 import Login from '../screens/Login'
 import { useTypedSelector } from '../store/hooks'
 
-export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+export default function Navigation() {
   
   const {isLoggedIn} = useTypedSelector((state) => state.login)
 
   return (
     <NavigationContainer
-      linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      linking={LinkingConfiguration}>
       {
         isLoggedIn
           ? <RootNavigator />

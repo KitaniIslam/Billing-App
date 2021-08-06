@@ -6,13 +6,13 @@ import { store } from './store'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider as StyleProvider } from '@ant-design/react-native'
 import useCachedResources from './hooks/useCachedResources';
-import useColorScheme from './hooks/useColorScheme';
+// import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import { useFonts } from 'expo-font'
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
+  // const colorScheme = useColorScheme();
   let [fontsLoaded] = useFonts({
     'antoutline': require('@ant-design/icons-react-native/fonts/antoutline.ttf'),
     'antfill': require('@ant-design/icons-react-native/fonts/antfill.ttf')
@@ -25,7 +25,7 @@ export default function App() {
       <Provider store={store}>
         <SafeAreaProvider>
           <StyleProvider>
-            <Navigation colorScheme={colorScheme} />
+            <Navigation/>
           </StyleProvider>
           <StatusBar />
         </SafeAreaProvider>
