@@ -4,7 +4,7 @@ module.exports = function(api) {
     presets: ['babel-preset-expo'],
     plugins: [
       'react-native-reanimated/plugin',
-      ["import", { "libraryName": "antd-mobile-rn" }],
+      ['import', {libraryName: '@ant-design/react-native'}],
     ],
   };
 };

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Button, List, Modal } from 'antd-mobile-rn'
+import { Button, List, Modal } from '@ant-design/react-native'
 import { View, Text, StyleSheet } from 'react-native'
 import { useTypedSelector } from '../store/hooks'
 
@@ -14,8 +14,8 @@ export default function DetailsModal() {
   }
   return (
     <View>
-      <List.Item arrow="up" onClick={showModal} style={{backgroundColor: '#3498db'}}>
-          <Text style={styles.title}>Total Price: $ {taxedTotalPriceInBasket.toFixed(2)}</Text>
+      <List.Item arrow="up" onPress={showModal} style={{ backgroundColor: '#3498db' }}>
+        <Text style={styles.title}>Total Price: $ {taxedTotalPriceInBasket.toFixed(2)}</Text>
         <List.Item.Brief>
           <Text style={styles.brief}>Click for more details</Text>
         </List.Item.Brief>
@@ -32,7 +32,7 @@ export default function DetailsModal() {
           <List.Item key={2}>{`Tax ${tax}% : $ ${taxAppliedOnBasket.toFixed(2)}`}</List.Item>
           <List.Item key={3}>{`Total Price: $ ${taxedTotalPriceInBasket.toFixed(2)}`}</List.Item>
           <List.Item>
-            <Button type="primary" onClick={onClose}>Close</Button>
+            <Button type="primary" onPress={onClose}>Close</Button>
           </List.Item>
         </List>
       </Modal>

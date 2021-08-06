@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { View, StyleSheet } from 'react-native';
-import { List, InputItem, WhiteSpace, Button } from 'antd-mobile-rn'
+import { List, InputItem, WhiteSpace, Button } from '@ant-design/react-native'
 import { useTypedDispatch, useTypedSelector } from '../store/hooks'
 import { LoginUser } from '../store/futures/Login'
 
@@ -34,7 +34,7 @@ export default function Login() {
         </InputItem>
       </List>
       <WhiteSpace  size="md"/>
-      <Button type="primary" style={styles.loginItems} onClick={logUser}>
+      <Button type="primary" style={styles.loginItems} onPress={logUser}>
         Login
       </Button>
     </View>

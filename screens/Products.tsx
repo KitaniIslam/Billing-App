@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
-import { List, SearchBar } from 'antd-mobile-rn'
+import { List, SearchBar } from '@ant-design/react-native'
 import { useTypedSelector } from '../store/hooks'
 import { Product } from '../types'
 
@@ -40,7 +40,7 @@ export default function Products({ navigation }: { navigation: any }) {
             .filter((item) => item.name.toLowerCase().includes(productToFind.value.toLowerCase()))
             .map((item) => <Item
               arrow="horizontal"
-              onClick={() => VisitProductPage(item)}
+              onPress={() => VisitProductPage(item)}
               extra={`${item.processedTotalPrice} $`}
               key={item.id}
             >

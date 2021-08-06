@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { View, StyleSheet } from 'react-native';
-import { List, Button } from 'antd-mobile-rn';
+import { List, Button } from '@ant-design/react-native';
 import { useTypedDispatch } from '../store/hooks'
 import { Logout } from '../store/futures/Login'
 
@@ -20,7 +20,7 @@ export default function Settings() {
       <Item
           arrow="horizontal"
           thumb={<Ionicons name="person-outline" style={{marginRight: 10 }} size={18} color="black" />}
-          onClick={() => {}}
+          onPress={() => {}}
           disabled
         >
         My Profile
@@ -28,7 +28,7 @@ export default function Settings() {
       <Item
           arrow="horizontal"
           thumb={<Ionicons name="ios-eye-outline" style={{marginRight: 10 }} size={18} color="black" />}
-          onClick={() => {}}
+          onPress={() => {}}
           disabled
         >
         Appearance
@@ -36,7 +36,7 @@ export default function Settings() {
       <Item
           arrow="horizontal"
           thumb={<Ionicons name="ios-lock-closed-outline" style={{marginRight: 10 }} size={18} color="black" />}
-          onClick={() => {}}
+          onPress={() => {}}
           disabled
         >
         Privacy & Security
@@ -44,7 +44,7 @@ export default function Settings() {
       <Item
           arrow="horizontal"
           thumb={<Ionicons name="ios-headset-outline" style={{marginRight: 10 }} size={18} color="black" />}
-          onClick={() => {}}
+          onPress={() => {}}
           disabled
         >
         Help & Support
@@ -52,13 +52,13 @@ export default function Settings() {
       <Item
           arrow="horizontal"
           thumb={<Ionicons name="ios-help-outline" style={{marginRight: 10 }} size={18} color="black" />}
-          onClick={() => {}}
+          onPress={() => {}}
           disabled
         >
         About
       </Item>
       <Item>
-        <Button type="warning" onClick={LogoutUser}>
+        <Button type="warning" onPress={LogoutUser}>
           Logout
         </Button>
       </Item>

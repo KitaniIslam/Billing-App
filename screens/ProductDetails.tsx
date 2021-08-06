@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import { List } from 'antd-mobile-rn'
+import { List } from '@ant-design/react-native'
 const Item = List.Item
 const Brief = Item.Brief
 export default function ProductDetails({ route }: { route: any }) {
