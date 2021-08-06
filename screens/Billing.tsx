@@ -77,7 +77,7 @@ export default function Billing() {
   return (
     <View style={styles.container}>
       <View style={styles.inputArea}>
-        <ScrollView>
+        <ScrollView style={{backgroundColor: '#ffffff'}}>
           <InputItem
             clear
             type="text"
