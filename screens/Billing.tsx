@@ -99,7 +99,7 @@ export default function Billing() {
           >
             Price
           </InputItem>
-          {showErrors && Number(productPrice) === 0 && <Text style={styles.errorMessage}>Please Set valide Price</Text>}
+          {showErrors && Number(productPrice) === 0 && <Text testID="error-message" style={styles.errorMessage}>Please Set valide Price</Text>}
           <List.Item
             extra={
               <Stepper
@@ -126,7 +126,7 @@ export default function Billing() {
               Select State
             </List.Item>
           </Picker>
-          <Button type="primary" style={{ marginHorizontal: 15, marginTop: 10 }} onPress={addProductToBasket}>Add To List</Button>
+          <Button testID='add-product' type="primary" style={{ marginHorizontal: 15, marginTop: 10 }} onPress={addProductToBasket}>Add To List</Button>
           <View>
             <List renderHeader="Basket">
               {Basket.map((item) => <List.Item key={item.id} extra={item.price * item.quantity}>{item.name}<List.Item.Brief>{`Qt: ${item.quantity} State: ${item.state}`}</List.Item.Brief></List.Item>)}

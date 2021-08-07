@@ -1,21 +1,18 @@
 import React from 'react'
-import TestRenderer from 'react-test-renderer';
 import { Provider } from 'react-redux'
 import { store } from '../store'
-import { cleanup } from '@testing-library/react-native';
+import { render, cleanup, fireEvent, waitFor } from '@testing-library/react-native';
 
 import Billing from './Billing'
 
-describe('component mount', () => {
-  let testRenderer: any;
-  beforeEach(() => {
-    jest.useFakeTimers()
-    testRenderer = TestRenderer.create(<Provider store={store}><Billing /></Provider>);
-  })
+test('show error message onAddProduct before entering params', async () => {
 
-  it('Work', () => {
-    expect(testRenderer).not.toBeNull()
-  })
+  const screen = render(<Provider store={store}><Billing /></Provider>);
+
+  const addButton = screen.getByTestId('add-product')
+  fireEvent.press(addButton)
+
+  await waitFor(() => expect(screen.getByTestId('error-message')).toBeTruthy())
 
   afterEach(cleanup)
 })
